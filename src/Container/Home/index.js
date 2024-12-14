@@ -1,6 +1,11 @@
 
 import React, { useEffect, useState,Suspense,lazy} from 'react'
 const Header = lazy(() => import('../../Component/Header/Header'));
+const Footer =lazy(()=>import('../../Component/Footer/Footer'));
+const Loader = React.lazy(() => import('../../Component/Loader'));
+const Homeslider = lazy(() => import('../../Component/Homeslider/Homeslider'));
+const Banner = lazy(() => import('../../Component/Banner/Banner'));
+const Vertical = lazy(() => import('../../Component/Verticals/Verticals'));
 
 const Home = () => {
     const [data, setData] = useState([]);
@@ -50,15 +55,18 @@ const Home = () => {
   return (
     <Suspense>
          <Header/>
-         <h1>Fetched Data</h1>
-      <ul>
-        {data.slice(0, 10).map((item) => (
-          <li key={item.DepartmentId}>
-            <strong>{item.DepartmentName}</strong>
-            
-          </li>
-        ))}
-      </ul>
+         <div className="container-fluid">                                   
+                <div className="row">
+                    <div className="bannerhome col-lg-12 col-md-12 col-sm-12 col-12">                        
+                    <Suspense fallback={<Loader />} ><Homeslider /></Suspense>
+                    <Suspense fallback={<Loader />} ><Banner /></Suspense>
+                   
+                    </div>
+                </div>
+            </div>
+            <div className="footerhr"></div>
+            <Footer />
+        
    
     </Suspense>
   )

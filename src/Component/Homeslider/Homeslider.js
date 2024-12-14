@@ -1,13 +1,36 @@
 
 import { Link } from "react-router-dom";
-import Slider from "react-slick";
-import { useDispatch, useSelector } from 'react-redux';
-import { getDepartment } from '../../Redux/Action/DepartmentAction';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
+
 import'./Homeslider.css';
 
 import React, { useState, useEffect, Suspense,useCallback } from 'react';
 
 const Homeslider = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+          // Sample API endpoint
+          const url = 'https://radiancelooks.com/reactapi/public/index.php/api/department';
+      
+          const fetchData = async () => {
+            try {
+              const response = await fetch(url);
+              if (!response.ok) {
+                throw new Error('Network response was not ok');
+              }
+              const result = await response.json();
+              setData(result.data);
+            } catch (error) {
+              
+            } finally {
+              
+            }
+          };
+      
+          fetchData();
+        }, []); // Empty dependency array ensures this runs once on mount
+      console.log(data);
     const settings = {
         dots: false,
         infinite: false,
@@ -51,20 +74,20 @@ const Homeslider = () => {
           }
         ]
       };
-      const dispatch = useDispatch();
+      
 
-      useEffect(() => {
-          dispatch(getDepartment());
-      }, [])
-      const departments = useSelector(state => state.Department.department)
+    
+      
     return(
         <>
         <Suspense>
         <div className="container-fluid homecategoryimage"> 
-            <div className="row">
-        
-            <Slider {...settings} className="sliderlayout ">
-        {departments.map((department,index)=>{
+            <div className="row" style={{display:"flex"}}>
+   
+
+           
+        {data.map((department,index)=>{
+          
     var url="https://cityonnet-virtualmall.s3.ap-southeast-1.amazonaws.com/Homepage_category_slider_images/"+department.DepartmentId+".jpg";
             return(
               <div className="sliderbox" key={"slide"+department.DepartmentId} >
@@ -77,7 +100,7 @@ const Homeslider = () => {
             </div>
             )
         })}
-        </Slider>
+        
         
         </div>
         </div>

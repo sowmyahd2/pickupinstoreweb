@@ -1,6 +1,5 @@
 import React, {Suspense} from 'react'
 import './Banner.css'
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 const Loader = React.lazy(() => import('../Loader'));
 
 const Banner = () => {
@@ -33,11 +32,9 @@ const Banner = () => {
 
 <div className="container-fluid homebannerimage "> 
                 <div className="row d-none d-md-block">            
-                    <LazyLoadImage src={require('../../../src/images/hmebanner1.webp')} className="img-fluid hmeban" alt="Banner" />
+                    <img src={require('../../../src/images/hmebanner1.webp')} className="img-fluid hmeban" alt="Banner" />
                 </div>
-                <div className="row d-block d-md-none">            
-                    <LazyLoadImage src={require('../../../src/images/hmebanner1.webp')} className="img-fluid hmeban" alt="Banner" />
-                </div>
+                
             
             </div> 
             </Suspense>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Suspense,useCallback } from 'react';
 import './Header.css';
 
-
+const Logo = React.lazy(() => import('../Generic/Logo'));
 const Header = () => {
    
  
@@ -17,22 +17,11 @@ const Header = () => {
                         <div className="headerleft col-6 ">
                             <i className="fas fa-list" ></i>
 
-                           
+                           <Logo/>
 
                         </div>
                         <div className="headerright col-6">
-                            <ul className="nav navlist justify-content-end" > 
-                                <li className="nav-item" >
-                                    <a className="nav-link" href="#"><i className="fas fa-language" /></a>
-                                </li>
-                                <li className="nav-item" >
-                                    <a className="nav-link" href="#"><i className="fas fa-map-marker-alt" /></a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="#"><i className="fas fa-shopping-cart" /></a>
-                                </li>
-                              
-                            </ul>
+                            
                         </div>
                     </div>
                     <div className="row">
@@ -66,9 +55,7 @@ const Header = () => {
                                 <a className="col-2 categories px-2" href=""><i className="fas fa-list " /> All Categories </a>
                                 <div className="col-5 searchinput">
                                     <button className="gobutton"><i className="fas fa-search" /></button>
-                                    <div className="searchinputlist" >
-                               
-                                    </div>
+                                   
                                 </div>
 
 
