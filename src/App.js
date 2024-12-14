@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const FetchDataExample = () => {
+const App = () => {
   // State to hold data and loading/error states
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -48,4 +48,4 @@ const FetchDataExample = () => {
   );
 };
 
-export default FetchDataExample;
+export default App;
